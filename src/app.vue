@@ -1,11 +1,12 @@
 <template lang="html">
   <div class="modal-backdrop d-f ai-c jc-c">
     <div class="modal-content">
-      <div class="modal-header" v-if="header">
-        <h2>{{header}}</h2>
+      <div class="modal-header d-f jc-sb" :class="[borderBottom ? border-bottom : '']" >
+        <h2 v-if="header">{{header}}</h2>
+        <div class="cross-icon">x</div>
       </div>
       <div class="modal-body">
-        {{content}}
+        <slot>{{content}}</slot>
       </div>
     </div>
   </div>
@@ -13,12 +14,15 @@
 
 <script>
 export default {
-  data() {
-    return {
-      header: "This is the Header",
-      content: ''
-    }
-  }
+  name: 'VueModal',
+  props: ['header', 'content', 'borderBottom']
+  // data() {
+  //   return {
+  //     header: "This is the Header",
+  //     content: '',
+  //     borderBottom: true
+  //   }
+  // }
 }
 </script>
 
@@ -35,6 +39,9 @@ export default {
   .jc-c {
     justify-content: center;
   }
+  .jc-sb {
+    justify-content: space-between;
+  }
   .modal-backdrop {
     height: 100%;
     width: 100%;
@@ -50,8 +57,10 @@ export default {
     background-color: rgba(255,255,255, 1);
     padding: 10px;
   }
-  .modal-header {
+  .border-bottom {
     border-bottom: 1px solid #ccc;
+  }
+  .modal-header {
     padding: 10px 0;
 
     h2 {
