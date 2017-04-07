@@ -1,9 +1,9 @@
 <template lang="html">
-  <div class="modal-backdrop d-f ai-c jc-c">
+  <div class="modal-backdrop d-f ai-c jc-c" v-if="showModal">
     <div class="modal-content">
       <div class="modal-header d-f jc-sb" :class="[borderBottom ? border-bottom : '']" >
         <h2 v-if="header">{{header}}</h2>
-        <div class="cross-icon">x</div>
+        <div class="cross-icon" @click="closeModal">x</div>
       </div>
       <div class="modal-body">
         <slot>{{content}}</slot>
@@ -15,14 +15,15 @@
 <script>
 export default {
   name: 'VueModal',
-  props: ['header', 'content', 'borderBottom']
-  // data() {
-  //   return {
-  //     header: "This is the Header",
-  //     content: '',
-  //     borderBottom: true
-  //   }
-  // }
+  props: ['showModal', 'header', 'content', 'borderBottom'],
+  created: function() {
+    console.log("Modal created!");
+  },
+  methods: {
+    closeModal() {
+      this.$emit('closeModal', false);
+    }
+  }
 }
 </script>
 

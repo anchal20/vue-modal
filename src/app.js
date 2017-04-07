@@ -5,3 +5,5 @@ new vue({
   el: '#app',
   render: h => h(app)
 });
+
+console.log("hello modal")
