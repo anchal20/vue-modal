@@ -6,4 +6,6 @@ new vue({
   render: h => h(app)
 });
 
-console.log("hello modal")
+exports.printMsg = function() {
+  console.log("hello modal");
+}
